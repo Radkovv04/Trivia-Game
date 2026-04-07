@@ -1,2 +1,3 @@
 # Trivia-Game
-Main repository for Trivia Game (PMU)
+Main repository for Trivia Game (PMU) - ПРОЧЕТИ ВНИМАТЕЛНО!
+Когато качваш промени описвай подробно кои файлове променяш, за да знаем какво да променяме обратно в нашите си проекти
