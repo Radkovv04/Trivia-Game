@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/bulgariaMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_bulgaria_map"
+        android:scaleType="fitCenter" />
+
+    <Button
+        android:id="@+id/btnSofia"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="100dp"
+        android:background="@android:color/transparent"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btnVarna"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="150dp"
+        android:background="@android:color/transparent"
+        android:text="" />
+
+</FrameLayout>
