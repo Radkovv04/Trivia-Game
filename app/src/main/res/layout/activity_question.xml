@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2C3E50"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvRegionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Битка за София"
+        android:textColor="#F1C40F"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/tvQuestionText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Коя година е основана Първата българска държава?"
+        android:textColor="#ECF0F1"
+        android:textSize="22sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvRegionName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="48dp"
+        android:layout_marginHorizontal="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvQuestionText"
+        app:layout_constraintVertical_bias="0.7">
+
+        <Button
+            android:id="@+id/btnAnswer1"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="18sp"
+            android:text="681" />
+
+        <Button
+            android:id="@+id/btnAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="18sp"
+            android:text="864" />
+
+        <Button
+            android:id="@+id/btnAnswer3"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="18sp"
+            android:text="1014" />
+
+        <Button
+            android:id="@+id/btnAnswer4"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:textSize="18sp"
+            android:text="1185" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

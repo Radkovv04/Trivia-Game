@@ -1,4 +1,6 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,25 +9,96 @@
         android:id="@+id/bulgariaMap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_bulgaria_map"
-        android:scaleType="fitCenter" />
+        android:src="@drawable/bulgaria_regions"
+        android:scaleType="fitXY" />
 
-    <Button
-        android:id="@+id/btnSofia"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginRight="100dp"
-        android:background="@android:color/transparent"
-        android:text="" />
+    <ImageView
+        android:id="@+id/overlayVidin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_vidin"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
 
-    <Button
-        android:id="@+id/btnVarna"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="150dp"
-        android:background="@android:color/transparent"
-        android:text="" />
+    <ImageView
+        android:id="@+id/overlaySofia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_sofia"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/overlayStaraZagora"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_stara_zagora"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/overlayBlagoevgrad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_blagoevgrad"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/overlayPleven"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_pleven"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/overlayLovech"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_lovech"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/overlayPlovdiv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_plovdiv"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/overlaySmolyan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_smolyan"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/overlayRuse"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_ruse"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/overlayHaskovo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_haskovo"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/overlayBurgas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_burgas"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/overlayVarna"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map_varna"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
