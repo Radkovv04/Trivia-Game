@@ -7,3 +7,20 @@ Main repository for Trivia Game (PMU) - ПРОЧЕТИ ВНИМАТЕЛНО!
 
 #to commit - бутоните на български, по-добре оформен и изпълващо меню, точни бутони по местата им
 TODO ефекти, картата и страните
+
+#Beta 1.2
+
+- Fixed leaderboard button
+- Added points UI
+- Added winner UI
+- Added Question UI
+- Added phase navigators UI
+- Added phase cycle
+- and more
+
+TODO:
+- Update attack logic
+- Defend mechanic
+- Login database
+- Online mode
+- APK file

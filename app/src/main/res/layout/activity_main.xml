@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,96 +9,404 @@
         android:id="@+id/bulgariaMap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/bulgaria_regions"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        android:src="@drawable/bulgaria_regions" />
 
     <ImageView
         android:id="@+id/overlayVidin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_vidin"
         android:scaleType="fitXY"
+        android:src="@drawable/map_vidin"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagVidin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.242" />
 
     <ImageView
         android:id="@+id/overlaySofia"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_sofia"
         android:scaleType="fitXY"
+        android:src="@drawable/map_sofia"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagSofia"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.536" />
 
     <ImageView
         android:id="@+id/overlayStaraZagora"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_stara_zagora"
         android:scaleType="fitXY"
+        android:src="@drawable/map_stara_zagora"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagStaraZagora"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.536" />
+
     <ImageView
         android:id="@+id/overlayBlagoevgrad"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_blagoevgrad"
         android:scaleType="fitXY"
+        android:src="@drawable/map_blagoevgrad"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagBlagoevgrad"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.816" />
+
     <ImageView
         android:id="@+id/overlayPleven"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_pleven"
         android:scaleType="fitXY"
+        android:src="@drawable/map_pleven"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagPleven"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="300dp"
+        android:layout_marginBottom="200dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.654"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.672" />
+
     <ImageView
         android:id="@+id/overlayLovech"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_lovech"
         android:scaleType="fitXY"
+        android:src="@drawable/map_lovech"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagLovech"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.557" />
+
     <ImageView
         android:id="@+id/overlayPlovdiv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_plovdiv"
         android:scaleType="fitXY"
+        android:src="@drawable/map_plovdiv"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagPlovdiv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.773" />
+
     <ImageView
         android:id="@+id/overlaySmolyan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_smolyan"
         android:scaleType="fitXY"
+        android:src="@drawable/map_smolyan"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagSmolyan"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.956" />
+
     <ImageView
         android:id="@+id/overlayRuse"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_ruse"
         android:scaleType="fitXY"
+        android:src="@drawable/map_ruse"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagRuse"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.242" />
+
     <ImageView
         android:id="@+id/overlayHaskovo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_haskovo"
         android:scaleType="fitXY"
+        android:src="@drawable/map_haskovo"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagHaskovo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.773" />
+
     <ImageView
         android:id="@+id/overlayBurgas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_burgas"
         android:scaleType="fitXY"
+        android:src="@drawable/map_burgas"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/flagBurgas"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.72"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.582" />
+
     <ImageView
         android:id="@+id/overlayVarna"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/map_varna"
         android:scaleType="fitXY"
-        android:visibility="invisible" />
+        android:src="@drawable/map_varna"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
+    <ImageView
+        android:id="@+id/flagVarna"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_flag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.817"
+        app:layout_constraintStart_toStartOf="@id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.242" />
+    <ImageView
+        android:id="@+id/redScoreBg"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/points_tab_red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/redScoreText"
+        android:layout_width="45dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="18dp"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/redScoreBg"
+        app:layout_constraintEnd_toEndOf="@id/redScoreBg" />
+
+    <ImageView
+        android:id="@+id/blueScoreBg"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleX="1"
+        android:src="@drawable/points_tab_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/blueScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="16dp"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/blueScoreBg"
+        app:layout_constraintStart_toStartOf="@id/blueScoreBg" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/phaseOverlayLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000"
+        android:elevation="90dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/phaseImage"
+            android:layout_width="400dp"
+            android:layout_height="150dp"
+            android:src="@drawable/attack_phase"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/winnerOverlayLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A6000000"
+        android:elevation="100dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/winnerTabImage"
+            android:layout_width="400dp"
+            android:layout_height="250dp"
+            android:src="@drawable/winner_tab"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/winnerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ЧЕРВЕНИТЕ ПЕЧЕЛЯТ!"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/winnerTabImage"
+            app:layout_constraintEnd_toEndOf="@id/winnerTabImage"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="@id/winnerTabImage"
+            app:layout_constraintTop_toTopOf="@id/winnerTabImage"
+            app:layout_constraintVertical_bias="0.495" />
+
+        <Button
+            android:id="@+id/btnPlayAgain"
+            android:layout_width="92dp"
+            android:layout_height="31dp"
+            android:layout_marginBottom="56dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/winnerTabImage"
+            app:layout_constraintEnd_toEndOf="@id/winnerTabImage"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@id/winnerTabImage" />
+
+        <Button
+            android:id="@+id/btnRematch"
+            android:layout_width="82dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/btnPlayAgain"
+            app:layout_constraintEnd_toStartOf="@id/btnPlayAgain"
+            app:layout_constraintTop_toTopOf="@id/btnPlayAgain"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnQuit"
+            android:layout_width="77dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="16dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/btnPlayAgain"
+            app:layout_constraintStart_toEndOf="@id/btnPlayAgain"
+            app:layout_constraintTop_toTopOf="@id/btnPlayAgain" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

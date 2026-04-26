@@ -26,8 +26,14 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape"
-            android:exported="true" />
-        <activity android:name=".QuestionActivity" />
+            android:configChanges="orientation|screenSize|keyboardHidden">
+        </activity>
+
+        <activity
+            android:name=".QuestionActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+        </activity>
 
     </application>
 
