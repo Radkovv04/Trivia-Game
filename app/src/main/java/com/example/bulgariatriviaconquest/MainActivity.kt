@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
     // We only need ONE variable to track who is currently answering the question
     private var isRedTurnToAnswer = true
+    private var isFirstAnswerer = true
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,6 +130,41 @@ class MainActivity : AppCompatActivity() {
         GameManager.blueTargetRegion = null
         findViewById<TextView>(R.id.redScoreText)?.text = GameManager.redPoints.toString()
         findViewById<TextView>(R.id.blueScoreText)?.text = GameManager.bluePoints.toString()
+<<<<<<< Updated upstream
+=======
+        val sofia = GameManager.territories["София"]
+        val burgas = GameManager.territories["Бургас"]
+        val castleSofia = findViewById<ImageView>(R.id.castleSofia)
+        val castleBurgas = findViewById<ImageView>(R.id.castleBurgas)
+
+        // Red Kingdom (Sofia)
+        sofia?.let {
+            if (it.isKingdom) {
+                when (it.lives) {
+                    2 -> castleSofia.setImageResource(R.drawable.castle_red)
+                    1 -> castleSofia.setImageResource(R.drawable.castle_red_destroyed)
+                    0 -> castleSofia.visibility = View.GONE
+                }
+            }
+        }
+
+        // Blue Kingdom (Burgas)
+        burgas?.let {
+            if (it.isKingdom) {
+                when (it.lives) {
+                    2 -> castleBurgas.setImageResource(R.drawable.castle_blue)
+                    1 -> castleBurgas.setImageResource(R.drawable.castle_blue_destroyed)
+                    0 -> castleBurgas.visibility = View.GONE
+                }
+            }
+        }
+
+        // Reset targets and update scores
+        GameManager.redTargetRegion = null
+        GameManager.blueTargetRegion = null
+        findViewById<TextView>(R.id.redScoreText)?.text = GameManager.redPoints.toString()
+        findViewById<TextView>(R.id.blueScoreText)?.text = GameManager.bluePoints.toString()
+>>>>>>> Stashed changes
     }
 
     private fun handleTerritoryClick(regionName: String) {
@@ -137,8 +173,26 @@ class MainActivity : AppCompatActivity() {
 
         when (result) {
             GameManager.MoveResult.VALID -> {
+<<<<<<< Updated upstream
                 // --- YOUR ORIGINAL CAPTURE PHASE ---
                 if (GameManager.currentPhase == GamePhase.CAPTURE) {
+=======
+                if (GameManager.currentPhase == GamePhase.CAPTURE) {
+                    val neutralCount = GameManager.territories.values.count { it.owner == Team.NEUTRAL }
+
+                    // --- DEADLOCK FIX: 1 Neutral Left ---
+                    if (neutralCount == 1) {
+                        // BOTH teams immediately target this final territory
+                        GameManager.redTargetRegion = regionName
+                        GameManager.blueTargetRegion = regionName
+                        showFlag(regionName, Team.RED)
+                        showFlag(regionName, Team.BLUE)
+                        launchQuestionPhase() // Launch STANDARD questions first!
+                        return
+                    }
+
+                    // --- NORMAL CAPTURE PHASE ---
+>>>>>>> Stashed changes
                     if (currentPlayer == Team.RED) {
                         GameManager.redTargetRegion = regionName
                         showFlag(regionName, Team.RED)
@@ -149,6 +203,7 @@ class MainActivity : AppCompatActivity() {
                         showFlag(regionName, Team.BLUE)
                         launchQuestionPhase()
                     }
+<<<<<<< Updated upstream
                 }
                 // --- THE NEW ATTACK PHASE ---
                 else {
@@ -156,6 +211,16 @@ class MainActivity : AppCompatActivity() {
                     GameManager.blueTargetRegion = regionName
                     showFlag(regionName, currentPlayer)
                     launchQuestionPhase()
+=======
+                } else {
+                    // --- ATTACK PHASE ---
+                    GameManager.redTargetRegion = regionName
+                    GameManager.blueTargetRegion = regionName
+                    showFlag(regionName, currentPlayer)
+
+                    isFirstAnswerer = true // The attacker starts
+                    startQuestionActivity() // Launch for the attacker
+>>>>>>> Stashed changes
                 }
             }
             else -> Toast.makeText(this, "Невалиден ход!", Toast.LENGTH_SHORT).show()
@@ -181,7 +246,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun startQuestionActivity() {
         val intent = Intent(this, QuestionActivity::class.java)
+<<<<<<< Updated upstream
         intent.putExtra("IS_RED_TURN", isRedTurnToAnswer)
+=======
+
+        val currentlyAnsweringRed = if (GameManager.currentPhase == GamePhase.CAPTURE) {
+            isRedTurnToAnswer // Standard Red -> Blue
+        } else {
+            // In Attack Phase: first is Attacker, second is Defender
+            if (isFirstAnswerer) {
+                GameManager.currentTurn == Team.RED
+            } else {
+                GameManager.currentTurn == Team.BLUE // If Blue is attacking, Red is defending (and vice versa)
+            }
+        }
+
+        intent.putExtra("IS_RED_TURN", currentlyAnsweringRed)
+>>>>>>> Stashed changes
         startActivityForResult(intent, 1001)
     }
 
@@ -193,12 +274,19 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+<<<<<<< Updated upstream
         // --- TIE BREAKER RESULT ---
+=======
+        // ==========================================================
+        // ⚔️ TIE-BREAKER DUEL RESULT (1002)
+        // ==========================================================
+>>>>>>> Stashed changes
         if (requestCode == 1002 && resultCode == Activity.RESULT_OK) {
             val winnerString = data?.getStringExtra("WINNING_TEAM")
             val winningTeam = if (winnerString == "RED") Team.RED else Team.BLUE
 
             GameManager.resolveDuel(winningTeam, GameManager.redTargetRegion!!)
+<<<<<<< Updated upstream
             finishAttackRound()
             return
         }
@@ -264,6 +352,98 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         // Game continues
                         GameManager.currentTurn = Team.RED
+=======
+
+            // Check if the map is now full
+            val neutralExists = GameManager.territories.values.any { it.owner == Team.NEUTRAL }
+
+            if (!neutralExists && GameManager.currentPhase == GamePhase.CAPTURE) {
+                showPhaseBanner(GamePhase.ATTACK) {
+                    GameManager.currentPhase = GamePhase.ATTACK
+                    GameManager.currentTurn = Team.RED
+                    updateMapVisuals()
+                }
+            } else {
+                finishAttackRound()
+            }
+            return
+        }
+
+        // ==========================================================
+        // 🧠 STANDARD QUESTION RESULT (1001)
+        // ==========================================================
+        if (requestCode == 1001 && resultCode == Activity.RESULT_OK) {
+            val wasCorrect = data?.getBooleanExtra("WAS_CORRECT", false) ?: false
+
+            // --- CASE A: CAPTURE PHASE (Your working logic) ---
+            if (GameManager.currentPhase == GamePhase.CAPTURE) {
+                if (isRedTurnToAnswer) {
+                    GameManager.redLastResult = wasCorrect
+                    isRedTurnToAnswer = false
+                    startQuestionActivity()
+                } else {
+                    GameManager.blueLastResult = wasCorrect
+                    val phaseBeforeRound = GameManager.currentPhase
+
+                    GameManager.resolveRound(GameManager.redLastResult, GameManager.blueLastResult)
+                    updateMapVisuals()
+
+                    // Check Game Over
+                    if (GameManager.instantWinner != null ||
+                        GameManager.territories.values.all { it.owner == Team.RED } ||
+                        GameManager.territories.values.all { it.owner == Team.BLUE }) {
+                        showWinnerScreen()
+                    } else if (phaseBeforeRound == GamePhase.CAPTURE && GameManager.currentPhase == GamePhase.ATTACK) {
+                        showPhaseBanner(GamePhase.ATTACK) {
+                            GameManager.currentPhase = GamePhase.ATTACK
+                            GameManager.currentTurn = Team.RED
+                            isRedTurnToAnswer = true
+                            updateMapVisuals()
+                        }
+                    } else {
+                        GameManager.currentTurn = Team.RED
+                        isRedTurnToAnswer = true
+                    }
+                }
+            }
+            // --- CASE B: ATTACK PHASE (New Attacker-First Logic) ---
+            else {
+                val attacker = GameManager.currentTurn
+                val defender = if (attacker == Team.RED) Team.BLUE else Team.RED
+
+                if (isFirstAnswerer) {
+                    // First person answering is ALWAYS the attacker
+                    if (attacker == Team.RED) GameManager.redLastResult = wasCorrect
+                    else GameManager.blueLastResult = wasCorrect
+
+                    if (!wasCorrect) {
+                        // ATTACKER FAILED: End round immediately
+                        Toast.makeText(this, "Атаката се провали!", Toast.LENGTH_SHORT).show()
+                        GameManager.resolveDuel(defender, GameManager.redTargetRegion!!)
+
+                        isFirstAnswerer = true // Reset for next round
+                        finishAttackRound()
+                    } else {
+                        // Attacker was correct: Now defender must answer
+                        isFirstAnswerer = false
+                        startQuestionActivity()
+                    }
+                } else {
+                    // Second person answering is ALWAYS the defender
+                    if (defender == Team.RED) GameManager.redLastResult = wasCorrect
+                    else GameManager.blueLastResult = wasCorrect
+
+                    // Both have now answered
+                    if (GameManager.redLastResult && GameManager.blueLastResult) {
+                        // Both correct -> Duel
+                        showPhaseBanner(R.drawable.decided_teritory) { launchDuelPhase() }
+                    } else {
+                        // Attacker was correct (checked above), Defender was wrong -> Attacker wins
+                        GameManager.resolveDuel(attacker, GameManager.redTargetRegion!!)
+
+                        isFirstAnswerer = true // Reset
+                        finishAttackRound()
+>>>>>>> Stashed changes
                     }
                 }
             }
@@ -293,6 +473,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Атакуват ${if(GameManager.currentTurn == Team.RED) "Червените" else "Сините"}!", Toast.LENGTH_LONG).show()
     }
 
+<<<<<<< Updated upstream
     private fun showPhaseBanner(phase: GamePhase) {
         val phaseOverlay = findViewById<View>(R.id.phaseOverlayLayout)
         val phaseImage = findViewById<ImageView>(R.id.phaseImage)
@@ -302,14 +483,27 @@ class MainActivity : AppCompatActivity() {
             phaseImage.setImageResource(R.drawable.capture_phase)
         } else {
             phaseImage.setImageResource(R.drawable.attack_phase)
+=======
+    private fun showPhaseBanner(data: Any?, onComplete: (() -> Unit)? = null) {
+        val phaseOverlay = findViewById<View>(R.id.phaseOverlayLayout)
+        val phaseImage = findViewById<ImageView>(R.id.phaseImage)
+
+        // This handles both GamePhase and R.drawable IDs correctly
+        when (data) {
+            is GamePhase -> {
+                if (data == GamePhase.CAPTURE) phaseImage.setImageResource(R.drawable.capture_phase)
+                else phaseImage.setImageResource(R.drawable.attack_phase)
+            }
+            is Int -> phaseImage.setImageResource(data)
+>>>>>>> Stashed changes
         }
 
-        // Show it
         phaseOverlay.visibility = View.VISIBLE
 
-        // Hide it automatically after 3 seconds
         android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
             phaseOverlay.visibility = View.GONE
+            // This is the critical part: it runs the logic ONLY after the banner is gone
+            onComplete?.invoke()
         }, 3000)
     }
 
