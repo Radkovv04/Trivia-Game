@@ -9,6 +9,20 @@ data class TriviaQuestion(
 )
 
 object QuestionBank {
+    // Put this inside the QuestionBank object
+    data class NumericQuestion(val questionText: String, val correctAnswer: Int)
+
+    private val numericQuestions = listOf(
+        NumericQuestion("Коя година е създадена България?", 681),
+        NumericQuestion("През коя година избухва Априлското въстание?", 1876),
+        NumericQuestion("Колко метра е висок връх Мусала?", 2925),
+        NumericQuestion("През коя година е приета Търновската конституция?", 1879),
+        NumericQuestion("В коя година България влиза в ЕС?", 2007)
+    )
+
+    fun getNextNumericQuestion(): NumericQuestion {
+        return numericQuestions.random()
+    }
     // This list keeps track of questions we haven't asked yet this game
     private var availableQuestions = mutableListOf<TriviaQuestion>()
 
@@ -26,7 +40,6 @@ object QuestionBank {
         return availableQuestions.removeAt(0)
     }
 
-    // Your Master Database of Questions
     private val allQuestions = listOf(
 
         // --- ИСТОРИЯ (HISTORY) ---

@@ -54,8 +54,8 @@
 
     <TextView
         android:id="@+id/questionTextView"
-        android:layout_width="412dp"
-        android:layout_height="56dp"
+        android:layout_width="464dp"
+        android:layout_height="72dp"
         android:gravity="center"
         android:text="Коя е столицата на България?"
         android:textColor="#000000"
@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32"
+        app:layout_constraintVertical_bias="0.31"
         app:layout_constraintWidth_percent="0.5" />
     <Button
         android:id="@+id/btnOpt1A"
@@ -79,8 +79,8 @@
         android:textSize="18sp"
         android:gravity="start|center_vertical"
         android:paddingStart="45dp"
-        app:layout_constraintHorizontal_bias="0.282"
-        app:layout_constraintVertical_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintVertical_bias="0.440"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,22 +88,23 @@
 
     <Button
         android:id="@+id/btnOpt1"
-        android:layout_width="220dp"
-        android:layout_height="55dp"
+        android:layout_width="215dp"
+        android:layout_height="38dp"
         android:background="@android:color/transparent"
+        android:gravity="start|center_vertical"
+        android:paddingStart="10dp"
         android:stateListAnimator="@null"
+        android:text="A:   Пловдив"
         android:textAllCaps="false"
-        android:text="A:    Пловдив"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
-        android:gravity="start|center_vertical"
-        android:paddingStart="45dp"
-        app:layout_constraintHorizontal_bias="0.325"
-        app:layout_constraintVertical_bias="0.450"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.325"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.440" />
     <Button
         android:id="@+id/btnOpt2B"
         android:layout_width="220dp"
@@ -116,28 +117,30 @@
         android:textSize="18sp"
         android:gravity="start|center_vertical"
         android:paddingStart="45dp"
-        app:layout_constraintHorizontal_bias="0.282"
-        app:layout_constraintVertical_bias="0.562"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintVertical_bias="0.557"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btnOpt2"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
+        android:layout_width="215dp"
+        android:layout_height="38dp"
         android:background="@android:color/transparent"
         android:gravity="start|center_vertical"
         android:paddingStart="10dp"
         android:text="B:   Варна"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintHorizontal_bias="0.325"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.560" />
+        app:layout_constraintVertical_bias="0.555" />
     <Button
         android:id="@+id/btnOpt3C"
         android:layout_width="220dp"
@@ -150,8 +153,8 @@
         android:textSize="18sp"
         android:gravity="start|center_vertical"
         android:paddingStart="45dp"
-        app:layout_constraintHorizontal_bias="0.628"
-        app:layout_constraintVertical_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintVertical_bias="0.440"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,20 +162,21 @@
 
     <Button
         android:id="@+id/btnOpt3"
-        android:layout_width="188dp"
-        android:layout_height="39dp"
+        android:layout_width="215dp"
+        android:layout_height="38dp"
         android:background="@android:color/transparent"
         android:gravity="start|center_vertical"
         android:paddingStart="10dp"
+        app:backgroundTint="@null"
         android:text="C:   София"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintHorizontal_bias="0.667"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.450" />
+        app:layout_constraintVertical_bias="0.440" />
     <Button
         android:id="@+id/btnOpt4D"
         android:layout_width="220dp"
@@ -185,8 +189,8 @@
         android:textSize="18sp"
         android:gravity="start|center_vertical"
         android:paddingStart="45dp"
-        app:layout_constraintHorizontal_bias="0.628"
-        app:layout_constraintVertical_bias="0.562"
+        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintVertical_bias="0.557"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -194,42 +198,43 @@
 
     <Button
         android:id="@+id/btnOpt4"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
+        android:layout_width="215dp"
+        android:layout_height="38dp"
         android:background="@android:color/transparent"
         android:gravity="start|center_vertical"
         android:paddingStart="10dp"
+        app:backgroundTint="@null"
         android:text="D:   Велико"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.680"
+        app:layout_constraintHorizontal_bias="0.667"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.560" />
+        app:layout_constraintVertical_bias="0.555" />
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:backgroundTint="#4CAF50"
-        android:text="Потвърди"
+        android:layout_width="186dp"
+        android:layout_height="53dp"
+        android:backgroundTint="@android:color/transparent"
+        android:text=""
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.748" />
 
     <TextView
         android:id="@+id/timerTextView"
         android:layout_width="47dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         android:elevation="10dp"
         android:gravity="center"
@@ -237,8 +242,10 @@
         android:textColor="#FFFFFF"
         android:textSize="28sp"
         android:textStyle="bold"
+        tools:layout_editor_absoluteX="342dp"
+        tools:layout_editor_absoluteY="52dp"
         app:layout_constraintBottom_toTopOf="@+id/questionTextView"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

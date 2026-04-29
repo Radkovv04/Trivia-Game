@@ -1,0 +1,86 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/second_question">
+
+    <TextView
+        android:id="@+id/duelTurnIndicator"
+        android:layout_width="192dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="12dp"
+        android:elevation="5dp"
+        android:text="РЕД НА ЧЕРВЕНИТЕ!"
+        android:textColor="#FF0000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/duelQuestionText"
+        android:layout_width="323dp"
+        android:layout_height="54dp"
+        android:layout_marginHorizontal="64dp"
+        android:elevation="5dp"
+        android:text="Въпрос..."
+        android:textAlignment="center"
+        android:textColor="#3E2723"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/duelTurnIndicator" />
+
+    <EditText
+        android:id="@+id/redInput"
+        android:layout_width="144dp"
+        android:layout_height="68dp"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:gravity="center"
+        android:hint="Червени"
+        android:inputType="number"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmitDuel"
+        app:layout_constraintEnd_toStartOf="@+id/blueInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/duelQuestionText"
+        app:layout_constraintVertical_bias="0.88" />
+
+    <EditText
+        android:id="@+id/blueInput"
+        android:layout_width="79dp"
+        android:layout_height="74dp"
+        android:backgroundTint="#4169E1"
+        android:gravity="center"
+        android:hint="Сини"
+        android:inputType="number"
+        android:textColor="#4169E1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmitDuel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/redInput"
+        app:layout_constraintTop_toBottomOf="@+id/duelQuestionText"
+        app:layout_constraintVertical_bias="0.913" />
+
+    <Button
+        android:id="@+id/btnSubmitDuel"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@android:color/transparent"
+        android:text=""
+        android:textColor="#3E2723"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

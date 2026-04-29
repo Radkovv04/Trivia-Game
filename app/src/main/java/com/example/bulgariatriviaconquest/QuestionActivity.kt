@@ -64,23 +64,38 @@ class QuestionActivity : AppCompatActivity() {
         questionTextView.text = currentQuestion.questionText
         correctAnswerText = currentQuestion.options[currentQuestion.correctAnswerIndex]
 
-        buttons.forEachIndexed { index, button ->
-            button.text = currentQuestion.options[index]
+        // Define the specific glowing colors for A(Red), B(Green), C(Blue), D(Yellow)
+        // We use #88 (about 50% opacity) so your background image still shows through!
+        val selectionColors = listOf(
+            Color.parseColor("#88FF0000"), // Slot 1: Glowing Red
+            Color.parseColor("#8800FF00"), // Slot 2: Glowing Green
+            Color.parseColor("#880000FF"), // Slot 3: Glowing Blue
+            Color.parseColor("#88FFD700")  // Slot 4: Glowing Gold/Yellow
+        )
 
-            // --- SELECTION LOGIC ---
+        // Map the XML shapes to the buttons (A=Red, B=Green, C=Blue, D=Yellow)
+        // 0 = A (Red), 1 = B (Green), 2 = C (Blue), 3 = D (Yellow)
+        val highlightDrawables = listOf(
+            R.drawable.glow_red,
+            R.drawable.glow_green,
+            R.drawable.glow_blue,
+            R.drawable.glow_yellow
+        )
+
+        buttons.forEachIndexed { index, button ->
+            button.text = "        ${currentQuestion.options[index]}"
+
             button.setOnClickListener {
                 if (isAnswered) return@setOnClickListener
 
-                // Clear previous selection visuals
-                buttons.forEach { it.setBackgroundResource(R.drawable.button_normal) }
+                // Reset all buttons to transparent
+                buttons.forEach { it.setBackgroundResource(android.R.color.transparent) }
 
                 selectedButton = button
+                selectedAnswer = button.text.toString()
 
-                // If your button text is "A: София", this gets just "София"
-                selectedAnswer = button.text.toString().substringAfter(": ")
-
-                // Apply your glow/highlight
-                button.setBackgroundColor(Color.CYAN)
+                // Apply the specific color based on its index (0, 1, 2, or 3)
+                button.setBackgroundResource(highlightDrawables[index])
             }
         }
 
@@ -116,7 +131,8 @@ class QuestionActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val isCorrect = (selectedAnswer == correctAnswerText)
+            // THIS IS THE FIX. It removes the spaces before checking if they won!
+            val isCorrect = (selectedButton?.text.toString().trim() == correctAnswerText)
             revealAndFinish(isCorrect)
         }
         countDownTimer = object : CountDownTimer(20000, 1000) {
@@ -137,29 +153,60 @@ class QuestionActivity : AppCompatActivity() {
         isAnswered = true
         countDownTimer?.cancel()
 
-        // Find all buttons again to color them
         val buttons = listOf<Button>(
             findViewById(R.id.btnOpt1), findViewById(R.id.btnOpt2),
             findViewById(R.id.btnOpt3), findViewById(R.id.btnOpt4)
         )
 
-        buttons.forEach { button ->
-            if (button.text == correctAnswerText) {
-                button.setBackgroundColor(Color.GREEN) // Always show correct answer in green
-            } else if (button == selectedButton && !isCorrect) {
-                button.setBackgroundColor(Color.RED) // Show user's wrong answer in red
+        // THE FIX: Add .trim() here so it ignores the spaces we added!
+        val correctBtn = buttons.find { it.text.toString().trim() == correctAnswerText }
+
+        // UPGRADE: If they got it wrong, instantly turn their bad choice Red!
+        if (!isCorrect && selectedButton != correctBtn) {
+            selectedButton?.setBackgroundResource(R.drawable.glow_red)
+        }
+
+        // --- THE PRO MILLIONAIRE ANIMATION ---
+        var blinkCount = 0
+        val blinkHandler = android.os.Handler(android.os.Looper.getMainLooper())
+
+        val blinkRunnable = object : Runnable {
+            override fun run() {
+                if (blinkCount < 6) {
+                    // Blink the CORRECT answer Green to reveal it
+                    if (blinkCount % 2 == 0) {
+                        correctBtn?.setBackgroundResource(R.drawable.glow_green)
+                    } else {
+                        correctBtn?.setBackgroundResource(android.R.color.transparent)
+                    }
+
+                    blinkCount++
+                    blinkHandler.postDelayed(this, 250)
+                } else {
+                    // Lock the correct answer in Green
+                    correctBtn?.setBackgroundResource(R.drawable.glow_green)
+
+                    // Wait 2.5 seconds to feel the pain/joy, then return to map
+                    blinkHandler.postDelayed({
+                        val resultIntent = Intent()
+
+                        val isRedTurn = intent.getBooleanExtra("IS_RED_TURN", true)
+                        if (isRedTurn) {
+                            resultIntent.putExtra("RED_CORRECT", isCorrect)
+                        } else {
+                            resultIntent.putExtra("BLUE_CORRECT", isCorrect)
+                        }
+                        resultIntent.putExtra("WAS_CORRECT", isCorrect)
+
+                        setResult(Activity.RESULT_OK, resultIntent)
+                        finish()
+                    }, 2500)
+                }
             }
         }
 
-        // Wait 2 seconds so the user can see the answer, then go back
-        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-            val resultIntent = Intent()
-            // We just send "WAS_CORRECT". MainActivity knows if it came from Red or Blue.
-            resultIntent.putExtra("WAS_CORRECT", isCorrect)
-
-            setResult(Activity.RESULT_OK, resultIntent)
-            finish()
-        }, 2000)
+        // Start the blinking!
+        blinkRunnable.run()
     }
 
     private fun updateTurnDisplay(turnText: TextView) {

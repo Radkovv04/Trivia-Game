@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
     private fun getFlagId(regionName: String): Int? {
         return when(regionName) {
             "Видин" -> R.id.flagVidin
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
             else -> null
         }
     }
+
     private fun hideAllFlags() {
         val allFlagIds = listOf(
             R.id.flagVidin, R.id.flagPleven, R.id.flagRuse, R.id.flagVarna,
@@ -127,8 +129,6 @@ class MainActivity : AppCompatActivity() {
         GameManager.blueTargetRegion = null
         findViewById<TextView>(R.id.redScoreText)?.text = GameManager.redPoints.toString()
         findViewById<TextView>(R.id.blueScoreText)?.text = GameManager.bluePoints.toString()
-
-
     }
 
     private fun handleTerritoryClick(regionName: String) {
@@ -137,20 +137,32 @@ class MainActivity : AppCompatActivity() {
 
         when (result) {
             GameManager.MoveResult.VALID -> {
-                if (currentPlayer == Team.RED) {
+                // --- YOUR ORIGINAL CAPTURE PHASE ---
+                if (GameManager.currentPhase == GamePhase.CAPTURE) {
+                    if (currentPlayer == Team.RED) {
+                        GameManager.redTargetRegion = regionName
+                        showFlag(regionName, Team.RED)
+                        GameManager.currentTurn = Team.BLUE
+                        Toast.makeText(this, "Ред на Сините!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        GameManager.blueTargetRegion = regionName
+                        showFlag(regionName, Team.BLUE)
+                        launchQuestionPhase()
+                    }
+                }
+                // --- THE NEW ATTACK PHASE ---
+                else {
                     GameManager.redTargetRegion = regionName
-                    showFlag(regionName, Team.RED)
-                    GameManager.currentTurn = Team.BLUE
-                    Toast.makeText(this, "Ред на Сините!", Toast.LENGTH_SHORT).show()
-                } else {
                     GameManager.blueTargetRegion = regionName
-                    showFlag(regionName, Team.BLUE)
+                    showFlag(regionName, currentPlayer)
                     launchQuestionPhase()
                 }
             }
             else -> Toast.makeText(this, "Невалиден ход!", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 
     private fun showFlag(regionName: String, team: Team) {
         val flagId = getFlagId(regionName)
@@ -169,13 +181,29 @@ class MainActivity : AppCompatActivity() {
 
     private fun startQuestionActivity() {
         val intent = Intent(this, QuestionActivity::class.java)
-        // Pass the turn info to QuestionActivity so it can change its title/UI
         intent.putExtra("IS_RED_TURN", isRedTurnToAnswer)
         startActivityForResult(intent, 1001)
     }
 
+    private fun launchDuelPhase() {
+        val intent = Intent(this, TieBreakerActivity::class.java)
+        startActivityForResult(intent, 1002) // 1002 for Duels
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        // --- TIE BREAKER RESULT ---
+        if (requestCode == 1002 && resultCode == Activity.RESULT_OK) {
+            val winnerString = data?.getStringExtra("WINNING_TEAM")
+            val winningTeam = if (winnerString == "RED") Team.RED else Team.BLUE
+
+            GameManager.resolveDuel(winningTeam, GameManager.redTargetRegion!!)
+            finishAttackRound()
+            return
+        }
+
+        // --- STANDARD QUESTION RESULT ---
         if (requestCode == 1001 && resultCode == Activity.RESULT_OK) {
             val wasCorrect = data?.getBooleanExtra("WAS_CORRECT", false) ?: false
 
@@ -183,51 +211,97 @@ class MainActivity : AppCompatActivity() {
                 // Red finished their question
                 GameManager.redLastResult = wasCorrect
                 isRedTurnToAnswer = false
-
-                // Immediately launch the screen again for Blue
-                startQuestionActivity()
+                startQuestionActivity() // Immediately launch for Blue
             } else {
                 // Blue finished their question
                 GameManager.blueLastResult = wasCorrect
 
-                // 1. Remember the phase BEFORE we resolve the round
-                val phaseBeforeRound = GameManager.currentPhase
+                // ==========================================
+                // BRANCH 1: ATTACK PHASE (DEFENDING MECHANIC)
+                // ==========================================
+                if (GameManager.currentPhase == GamePhase.ATTACK) {
+                    if (GameManager.redLastResult && GameManager.blueLastResult) {
+                        // BOTH RIGHT -> TIE BREAKER DUEL
+                        launchDuelPhase()
+                    } else {
+                        // SOMEONE WRONG -> RESOLVE IMMEDIATELY
+                        val attacker = GameManager.currentTurn
+                        val winner = if (attacker == Team.RED) {
+                            if (GameManager.redLastResult && !GameManager.blueLastResult) Team.RED else Team.BLUE
+                        } else {
+                            if (GameManager.blueLastResult && !GameManager.redLastResult) Team.BLUE else Team.RED
+                        }
 
-                // 2. Resolve the points and territory ownership
-                GameManager.resolveRound(GameManager.redLastResult, GameManager.blueLastResult)
-
-                // 3. Clean up the map, hide flags, update score texts
-                updateMapVisuals()
-
-                // 4. Did the phase just change to ATTACK? Show the popup!
-                if (phaseBeforeRound == GamePhase.CAPTURE && GameManager.currentPhase == GamePhase.ATTACK) {
-                    showPhaseBanner(GamePhase.ATTACK)
+                        GameManager.resolveDuel(winner, GameManager.redTargetRegion!!)
+                        finishAttackRound()
+                    }
                 }
+                // ==========================================
+                // BRANCH 2: YOUR ORIGINAL CAPTURE PHASE LOGIC
+                // ==========================================
+                else {
+                    // 1. Remember the phase BEFORE we resolve the round
+                    val phaseBeforeRound = GameManager.currentPhase
 
-                // 5. Check for Game Over!
-                // The game ends IF an instant winner is declared (Kingdom captured)
-                // OR if one team successfully conquers 100% of the map
-                val redOwnsAll = GameManager.territories.values.all { it.owner == Team.RED }
-                val blueOwnsAll = GameManager.territories.values.all { it.owner == Team.BLUE }
+                    // 2. Resolve the points and territory ownership
+                    GameManager.resolveRound(GameManager.redLastResult, GameManager.blueLastResult)
 
-                if (GameManager.instantWinner != null || redOwnsAll || blueOwnsAll) {
-                    showWinnerScreen()
-                } else {
-                    // Game continues
-                    GameManager.currentTurn = Team.RED
+                    // 3. Clean up the map, hide flags, update score texts
+                    // (This also sets targets to null, just like your original code)
+                    updateMapVisuals()
+
+                    // 4. Did the phase just change to ATTACK? Show the popup!
+                    if (phaseBeforeRound == GamePhase.CAPTURE && GameManager.currentPhase == GamePhase.ATTACK) {
+                        showPhaseBanner(GamePhase.ATTACK)
+                    }
+
+                    // 5. Check for Game Over!
+                    val redOwnsAll = GameManager.territories.values.all { it.owner == Team.RED }
+                    val blueOwnsAll = GameManager.territories.values.all { it.owner == Team.BLUE }
+
+                    if (GameManager.instantWinner != null || redOwnsAll || blueOwnsAll) {
+                        showWinnerScreen()
+                    } else {
+                        // Game continues
+                        GameManager.currentTurn = Team.RED
+                    }
                 }
             }
         }
     }
+
+    private fun finishAttackRound() {
+        // Force the map to look at the new owners in GameManager
+        updateMapVisuals()
+        hideAllFlags()
+
+        // Check Game Over
+        val redOwnsAll = GameManager.territories.values.all { it.owner == Team.RED }
+        val blueOwnsAll = GameManager.territories.values.all { it.owner == Team.BLUE }
+
+        if (GameManager.instantWinner != null || redOwnsAll || blueOwnsAll) {
+            val finalWinner = GameManager.instantWinner ?: if (redOwnsAll) Team.RED else Team.BLUE
+            GameManager.territories.values.forEach { it.owner = finalWinner }
+            updateMapVisuals()
+            showWinnerScreen()
+            return
+        }
+
+        // Switch Attacker Turn!
+        GameManager.currentTurn = if (GameManager.currentTurn == Team.RED) Team.BLUE else Team.RED
+        isRedTurnToAnswer = true
+        Toast.makeText(this, "Атакуват ${if(GameManager.currentTurn == Team.RED) "Червените" else "Сините"}!", Toast.LENGTH_LONG).show()
+    }
+
     private fun showPhaseBanner(phase: GamePhase) {
         val phaseOverlay = findViewById<View>(R.id.phaseOverlayLayout)
         val phaseImage = findViewById<ImageView>(R.id.phaseImage)
 
         // Set the correct image
         if (phase == GamePhase.CAPTURE) {
-            phaseImage.setImageResource(R.drawable.attack_phase)
-        } else {
             phaseImage.setImageResource(R.drawable.capture_phase)
+        } else {
+            phaseImage.setImageResource(R.drawable.attack_phase)
         }
 
         // Show it
@@ -238,6 +312,7 @@ class MainActivity : AppCompatActivity() {
             phaseOverlay.visibility = View.GONE
         }, 3000)
     }
+
     private fun showWinnerScreen() {
         val winnerOverlay = findViewById<View>(R.id.winnerOverlayLayout)
         val winnerText = findViewById<TextView>(R.id.winnerText)
@@ -259,11 +334,10 @@ class MainActivity : AppCompatActivity() {
 
         // Set up the 3 buttons
         findViewById<Button>(R.id.btnPlayAgain).setOnClickListener {
-            // This explicitly tells Android to open HomeActivity and clear the old game out of memory
             val intent = Intent(this, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
-            finish() // Closes the current Map Activity completely
+            finish()
         }
 
         findViewById<Button>(R.id.btnRematch).setOnClickListener {
@@ -274,7 +348,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnQuit).setOnClickListener {
-            finishAffinity() // Closes the entire app immediately
+            finishAffinity()
         }
     }
 }
