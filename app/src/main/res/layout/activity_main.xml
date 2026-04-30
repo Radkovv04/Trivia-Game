@@ -5,12 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/roundBannerLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/round_number" />
+
+        <TextView
+            android:id="@+id/roundNumberText"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="45dp"
+            android:shadowColor="#000000"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="5"
+            android:text="2"
+            android:textColor="#FFD700"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.65"
+            app:layout_constraintVertical_bias="0.65" />
+    </FrameLayout>
+
     <ImageView
         android:id="@+id/bulgariaMap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/bulgaria_regions" />
+        android:src="@drawable/bulgaria_regions"
+        android:visibility="visible" />
 
     <ImageView
         android:id="@+id/overlayVidin"
@@ -49,10 +85,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
         app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
-        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="@id/bulgariaMap"
         app:layout_constraintTop_toTopOf="@id/bulgariaMap"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintVertical_bias="0.474" />
 
     <ImageView
         android:id="@+id/overlayStaraZagora"
@@ -240,10 +276,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/bulgariaMap"
         app:layout_constraintEnd_toEndOf="@id/bulgariaMap"
-        app:layout_constraintHorizontal_bias="0.72"
+        app:layout_constraintHorizontal_bias="0.704"
         app:layout_constraintStart_toStartOf="@id/bulgariaMap"
         app:layout_constraintTop_toTopOf="@id/bulgariaMap"
-        app:layout_constraintVertical_bias="0.582" />
+        app:layout_constraintVertical_bias="0.498" />
 
     <ImageView
         android:id="@+id/overlayVarna"
@@ -267,6 +303,35 @@
         app:layout_constraintStart_toStartOf="@id/bulgariaMap"
         app:layout_constraintTop_toTopOf="@id/bulgariaMap"
         app:layout_constraintVertical_bias="0.242" />
+
+    <ImageView
+        android:id="@+id/castleSofia"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:elevation="5dp"
+        android:src="@drawable/castle_red"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@+id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toStartOf="@+id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@+id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.566" />
+
+    <ImageView
+        android:id="@+id/castleBurgas"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:elevation="5dp"
+        android:src="@drawable/castle_blue"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/bulgariaMap"
+        app:layout_constraintEnd_toEndOf="@+id/bulgariaMap"
+        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintStart_toStartOf="@+id/bulgariaMap"
+        app:layout_constraintTop_toTopOf="@+id/bulgariaMap"
+        app:layout_constraintVertical_bias="0.646" />
+
     <ImageView
         android:id="@+id/redScoreBg"
         android:layout_width="160dp"
@@ -303,9 +368,9 @@
 
     <TextView
         android:id="@+id/blueScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_width="51dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="76dp"
         android:layout_marginBottom="16dp"
         android:text="0"
         android:textColor="#FFFFFF"
@@ -343,7 +408,7 @@
         android:layout_height="match_parent"
         android:background="#A6000000"
         android:elevation="100dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
