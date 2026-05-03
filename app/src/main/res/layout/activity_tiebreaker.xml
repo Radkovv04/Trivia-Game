@@ -9,7 +9,11 @@
         android:id="@+id/duelTurnIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:layout_marginTop="16dp"
+=======
+        android:layout_marginTop="4dp"
+>>>>>>> Stashed changes
         android:elevation="5dp"
         android:text="РЕД НА ЧЕРВЕНИТЕ!"
         android:textColor="#FF0000"
@@ -23,7 +27,11 @@
     <TextView
         android:id="@+id/duelQuestionText"
         android:layout_width="349dp"
+<<<<<<< Updated upstream
         android:layout_height="44dp"
+=======
+        android:layout_height="54dp"
+>>>>>>> Stashed changes
         android:layout_marginHorizontal="64dp"
         android:layout_marginTop="4dp"
         android:elevation="5dp"
@@ -90,6 +98,39 @@
         app:layout_constraintHorizontal_bias="0.711"
         app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< Updated upstream
+=======
+    <TextView
+        android:id="@+id/redTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BloodOfIce"
+        android:textColor="#FFD700"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
+
+    <TextView
+        android:id="@+id/blueTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BloodOfIce"
+        android:textColor="#FFD700"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
+
+>>>>>>> Stashed changes
     <Button
         android:id="@+id/btnSubmitDuel"
         android:layout_width="152dp"
@@ -97,9 +138,266 @@
         android:layout_marginBottom="32dp"
         android:backgroundTint="@android:color/transparent"
         android:text=""
+<<<<<<< Updated upstream
+=======
+        app:backgroundTint="@null"
+        android:stateListAnimator="@null"
+>>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent" />
+<<<<<<< Updated upstream
+=======
+    <ImageView
+        android:id="@+id/redScoreBg"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/points_tab_red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/redScoreText"
+        android:layout_width="45dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="18dp"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/redScoreBg"
+        app:layout_constraintEnd_toEndOf="@id/redScoreBg" />
+
+    <ImageView
+        android:id="@+id/blueScoreBg"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleX="1"
+        android:src="@drawable/points_tab_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/blueScoreText"
+        android:layout_width="51dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="16dp"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/blueScoreBg"
+        app:layout_constraintStart_toStartOf="@id/blueScoreBg" />
+    <ImageView
+        android:id="@+id/btnHelp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="76dp"
+        android:elevation="10dp"
+        android:src="@drawable/help_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/helpOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000"
+        android:elevation="50dp"
+        android:visibility="gone"> <ImageView
+        android:id="@+id/helpBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="32dp"
+        android:src="@drawable/help_ui"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/helpBackground"
+            app:layout_constraintEnd_toEndOf="@+id/helpBackground"
+            app:layout_constraintStart_toStartOf="@+id/helpBackground"
+            app:layout_constraintTop_toTopOf="@+id/helpBackground">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Добре дошли в BULGARIA TRIVIA GAME!\n\nЦЕЛ НА ИГРАТA\nПревземете цялата карта на България, като отговаряте правилно на въпроси!\n\nФАЗА 1: ПРЕВЗЕМАНЕ\nВ началото териториите са неутрални. Отборите се редуват да избират региони. Задава се въпрос с 4 отговора. Ако отговорите правилно, печелите територията!\n\nФАЗА 2: АТАКА\nКогато картата се напълни, започва истинската война! Можете да атакувате съседна вражеска територия. Атакуващият отговаря първи. Ако сгреши, атаката пропада веднага! Ако познае, защитникът също трябва да отговори. Ако и двамата познаят, битката се решава с Дуел!\n\nДУЕЛ (ТАЙБРЕЙКЪР)\nЗадава се отворен въпрос с числов отговор. Имате 30 секунди! Този, чийто отговор е най-близо до верния, печели територията. При абсолютно равенство – по-бързият печели!\n\nКРЕПОСТИ (СТОЛИЦИ)\nСофия и Бургас са столици и са по-трудни за превземане. Те имат по 2 живота! За да ги превземете, трябва да ги победите два пъти успешно.\n\nУспех и нека по-знаещият отбор победи!"
+                android:textColor="#3E2723"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:lineSpacingExtra="4dp"/>
+        </ScrollView>
+
+        <View
+            android:id="@+id/btnCloseHelp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="@+id/helpBackground"
+            app:layout_constraintTop_toTopOf="@+id/helpBackground" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/btnSurrender"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/surrender"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/quitDialogLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"
+        android:elevation="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/quitDialogImage"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/quit_midgame"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnConfirmQuit"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@android:color/transparent"
+            android:stateListAnimator="@null"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="@id/quitDialogImage"
+            app:layout_constraintStart_toStartOf="@id/quitDialogImage" />
+
+        <Button
+            android:id="@+id/btnCancelQuit"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@android:color/transparent"
+            android:stateListAnimator="@null"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="@id/quitDialogImage"
+            app:layout_constraintEnd_toEndOf="@id/quitDialogImage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/btnSettings"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="24dp"
+        android:elevation="10dp"
+        android:src="@drawable/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settingsOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000"
+        android:elevation="50dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/settingsBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="32dp"
+            android:src="@drawable/help_ui"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/settingsBackground"
+            app:layout_constraintEnd_toEndOf="@+id/settingsBackground"
+            app:layout_constraintStart_toStartOf="@+id/settingsBackground"
+            app:layout_constraintTop_toTopOf="@+id/settingsBackground">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="НАСТРОЙКИ"
+                android:textColor="#3E2723"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="40dp"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchAudio"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:text="ЗВУК: ВКЛЮЧЕН"
+                android:textColor="#3E2723"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchGraphics"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:text="ГРАФИКА: ВИСОКА"
+                android:textColor="#3E2723"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:checked="true"
+                android:layout_marginBottom="24dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/btnCloseSettings"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="@+id/settingsBackground"
+            app:layout_constraintTop_toTopOf="@+id/settingsBackground" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> Stashed changes
 
 </androidx.constraintlayout.widget.ConstraintLayout>

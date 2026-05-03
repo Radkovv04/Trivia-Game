@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "587687725799",
+    "firebase_url": "https://bulgaria-trivia-default-rtdb.firebaseio.com",
+    "project_id": "bulgaria-trivia",
+    "storage_bucket": "bulgaria-trivia.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587687725799:android:d0faff2ef6f73d950e3042",
+        "android_client_info": {
+          "package_name": "com.example.bulgariatriviaconquest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWTi7JedlRipHJDxM14--7UHNECqQSK14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

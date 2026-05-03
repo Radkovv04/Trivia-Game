@@ -1,0 +1,200 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/loginImageBg"
+                android:layout_width="320dp"
+                android:layout_height="400dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/login_screen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/loginEmail"
+                android:layout_width="184dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="124dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:hint="Имейл"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textColor="#80FFFFFF"
+                android:textColorHint="#80FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/loginImageBg"
+                app:layout_constraintStart_toStartOf="@+id/loginImageBg"
+                app:layout_constraintTop_toTopOf="@+id/loginImageBg" />
+
+            <EditText
+                android:id="@+id/loginPassword"
+                android:layout_width="187dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="192dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:hint="Парола"
+                android:inputType="textPassword"
+                android:textColor="#80FFFFFF"
+                android:textColorHint="#80FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/loginImageBg"
+                app:layout_constraintStart_toStartOf="@+id/loginImageBg"
+                app:layout_constraintTop_toTopOf="@+id/loginImageBg" />
+
+            <View
+                android:id="@+id/btnLoginSubmit"
+                android:layout_width="169dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="240dp"
+                app:layout_constraintEnd_toEndOf="@+id/loginImageBg"
+                app:layout_constraintStart_toStartOf="@+id/loginImageBg"
+                app:layout_constraintTop_toTopOf="@+id/loginImageBg" />
+
+            <View
+                android:id="@+id/btnGoToRegister"
+                android:layout_width="120dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="320dp"
+                app:layout_constraintEnd_toEndOf="@+id/loginImageBg"
+                app:layout_constraintHorizontal_bias="0.735"
+                app:layout_constraintStart_toStartOf="@+id/loginImageBg"
+                app:layout_constraintTop_toTopOf="@+id/loginImageBg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/registerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/regImageBg"
+                android:layout_width="320dp"
+                android:layout_height="400dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/register_screen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/regEmail"
+                android:layout_width="170dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="184dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:hint="Имейл"
+                android:inputType="textEmailAddress"
+                android:textColor="#80FFFFFF"
+                android:textColorHint="#80FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/regImageBg"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@+id/regImageBg"
+                app:layout_constraintTop_toTopOf="@+id/regImageBg" />
+
+            <EditText
+                android:id="@+id/regUsername"
+                android:layout_width="169dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="120dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:hint="Потребителско име"
+                android:inputType="text"
+                android:maxLength="16"
+                android:textColor="#80FFFFFF"
+                android:textColorHint="#80FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/regImageBg"
+                app:layout_constraintHorizontal_bias="0.523"
+                app:layout_constraintStart_toStartOf="@+id/regImageBg"
+                app:layout_constraintTop_toTopOf="@+id/regImageBg" />
+
+            <EditText
+                android:id="@+id/regPassword"
+                android:layout_width="167dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="244dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:hint="Парола (Мин. 6 знака)"
+                android:inputType="textPassword"
+                android:textColor="#80FFFFFF"
+                android:textColorHint="#80FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/regImageBg"
+                app:layout_constraintHorizontal_bias="0.522"
+                app:layout_constraintStart_toStartOf="@+id/regImageBg"
+                app:layout_constraintTop_toTopOf="@+id/regImageBg" />
+
+            <View
+                android:id="@+id/btnRegisterSubmit"
+                android:layout_width="165dp"
+                android:layout_height="41dp"
+                android:layout_marginTop="296dp"
+                app:layout_constraintEnd_toEndOf="@+id/regImageBg"
+                app:layout_constraintStart_toStartOf="@+id/regImageBg"
+                app:layout_constraintTop_toTopOf="@+id/regImageBg" />
+
+            <TextView
+                android:id="@+id/btnBackToLogin"
+                android:layout_width="136dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="336dp"
+                android:layout_marginEnd="92dp"
+                android:gravity="center"
+                android:inputType="text"
+                android:maxLength="26"
+                android:text="Имаш Акаунт? влез сега!"
+                android:textColor="#80FFFFFF"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/regImageBg"
+                app:layout_constraintTop_toTopOf="@+id/regImageBg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
