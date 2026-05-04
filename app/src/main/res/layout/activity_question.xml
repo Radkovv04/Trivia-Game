@@ -313,7 +313,8 @@
         android:layout_height="match_parent"
         android:background="#B3000000"
         android:elevation="50dp"
-        android:visibility="gone"> <ImageView
+        android:visibility="gone">
+        <ImageView
         android:id="@+id/helpBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"

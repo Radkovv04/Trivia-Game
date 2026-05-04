@@ -92,46 +92,12 @@ class QuestionActivity : AppCompatActivity() {
         questionTextView.text = currentQuestion.questionText
         correctAnswerText = currentQuestion.options[currentQuestion.correctAnswerIndex]
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        // Define the specific glowing colors for A(Red), B(Green), C(Blue), D(Yellow)
-        // We use #88 (about 50% opacity) so your background image still shows through!
-        val selectionColors = listOf(
-            Color.parseColor("#88FF0000"), // Slot 1: Glowing Red
-            Color.parseColor("#8800FF00"), // Slot 2: Glowing Green
-            Color.parseColor("#880000FF"), // Slot 3: Glowing Blue
-            Color.parseColor("#88FFD700")  // Slot 4: Glowing Gold/Yellow
-        )
-
-        // Map the XML shapes to the buttons (A=Red, B=Green, C=Blue, D=Yellow)
-        // 0 = A (Red), 1 = B (Green), 2 = C (Blue), 3 = D (Yellow)
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         val highlightDrawables = listOf(
             R.drawable.glow_red,
             R.drawable.glow_green,
             R.drawable.glow_blue,
             R.drawable.glow_yellow
         )
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-        buttons.forEachIndexed { index, button ->
-            button.text = "        ${currentQuestion.options[index]}"
-
-            button.setOnClickListener {
-                if (isAnswered) return@setOnClickListener
-
-                // Reset all buttons to transparent
-                buttons.forEach { it.setBackgroundResource(android.R.color.transparent) }
-
-                selectedButton = button
-                selectedAnswer = button.text.toString()
-
-                // Apply the specific color based on its index (0, 1, 2, or 3)
-=======
 
         buttons.forEachIndexed { index, button ->
             button.text = "        ${currentQuestion.options[index]}"
@@ -140,17 +106,6 @@ class QuestionActivity : AppCompatActivity() {
                 buttons.forEach { it.setBackgroundResource(android.R.color.transparent) }
                 selectedButton = button
                 selectedAnswer = button.text.toString()
->>>>>>> Stashed changes
-=======
-
-        buttons.forEachIndexed { index, button ->
-            button.text = "        ${currentQuestion.options[index]}"
-            button.setOnClickListener {
-                if (isAnswered) return@setOnClickListener
-                buttons.forEach { it.setBackgroundResource(android.R.color.transparent) }
-                selectedButton = button
-                selectedAnswer = button.text.toString()
->>>>>>> Stashed changes
                 button.setBackgroundResource(highlightDrawables[index])
             }
         }
@@ -180,14 +135,6 @@ class QuestionActivity : AppCompatActivity() {
                 Toast.makeText(this, "Моля, изберете отговор!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-            // THIS IS THE FIX. It removes the spaces before checking if they won!
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             val isCorrect = (selectedButton?.text.toString().trim() == correctAnswerText)
             revealAndFinish(isCorrect)
         }
@@ -201,13 +148,6 @@ class QuestionActivity : AppCompatActivity() {
     }private fun revealAndFinish(isCorrect: Boolean) {
         isAnswered = true
         countDownTimer?.cancel()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         val buttons = listOf<Button>(
             findViewById(R.id.btnOpt1), findViewById(R.id.btnOpt2),
             findViewById(R.id.btnOpt3), findViewById(R.id.btnOpt4)
@@ -231,86 +171,6 @@ class QuestionActivity : AppCompatActivity() {
                 } else {
                     correctBtn?.setBackgroundResource(R.drawable.glow_green)
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        // THE FIX: Add .trim() here so it ignores the spaces we added!
-        val correctBtn = buttons.find { it.text.toString().trim() == correctAnswerText }
-
-        // UPGRADE: If they got it wrong, instantly turn their bad choice Red!
-        if (!isCorrect && selectedButton != correctBtn) {
-            selectedButton?.setBackgroundResource(R.drawable.glow_red)
-        }
-
-        // --- THE PRO MILLIONAIRE ANIMATION ---
-        var blinkCount = 0
-        val blinkHandler = android.os.Handler(android.os.Looper.getMainLooper())
-
-        val blinkRunnable = object : Runnable {
-            override fun run() {
-                if (blinkCount < 6) {
-                    // Blink the CORRECT answer Green to reveal it
-                    if (blinkCount % 2 == 0) {
-                        correctBtn?.setBackgroundResource(R.drawable.glow_green)
-                    } else {
-                        correctBtn?.setBackgroundResource(android.R.color.transparent)
-                    }
-
-                    blinkCount++
-                    blinkHandler.postDelayed(this, 150)
-                } else {
-                    // Lock the correct answer in Green
-                    correctBtn?.setBackgroundResource(R.drawable.glow_green)
-
-                    // Wait 2.5 seconds to feel the pain/joy, then return to map
-                    blinkHandler.postDelayed({
-                        val resultIntent = Intent()
-
-                        val isRedTurn = intent.getBooleanExtra("IS_RED_TURN", true)
-=======
-                    blinkHandler.postDelayed({
-                        val resultIntent = Intent()
-                        val isRedTurn = intent.getBooleanExtra("IS_RED_TURN", true)
-
->>>>>>> Stashed changes
-                        if (isRedTurn) {
-                            resultIntent.putExtra("RED_CORRECT", isCorrect)
-                        } else {
-                            resultIntent.putExtra("BLUE_CORRECT", isCorrect)
-                        }
-                        resultIntent.putExtra("WAS_CORRECT", isCorrect)
-
-                        setResult(Activity.RESULT_OK, resultIntent)
-                        finish()
-                    }, 1500)
-                }
-            }
-        }
-<<<<<<< Updated upstream
-
-        // Start the blinking!
-        blinkRunnable.run()
-    }
-
-    private fun updateTurnDisplay(turnText: TextView) {
-        if (isRedTurn) {
-            turnText.text = "Ред на $redName"
-            turnText.setTextColor(Color.RED)
-        } else {
-            turnText.text = "Ред на $blueName"
-            turnText.setTextColor(Color.parseColor("#4169E1")) // Blue
-        }
-    }
-
-    private fun applyCustomGlow(button: Button, colorCode: String) {
-        val shape = GradientDrawable()
-        shape.cornerRadius = 100f
-        shape.setStroke(8, Color.parseColor(colorCode))
-        shape.setColor(Color.parseColor("#26FFFFFF")) // Subtle highlight
-        button.background = shape
-=======
-        blinkRunnable.run()
->>>>>>> Stashed changes
-=======
                     blinkHandler.postDelayed({
                         val resultIntent = Intent()
                         val isRedTurn = intent.getBooleanExtra("IS_RED_TURN", true)
@@ -329,6 +189,5 @@ class QuestionActivity : AppCompatActivity() {
             }
         }
         blinkRunnable.run()
->>>>>>> Stashed changes
     }
 }

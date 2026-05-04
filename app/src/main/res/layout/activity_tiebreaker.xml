@@ -9,15 +9,7 @@
         android:id="@+id/duelTurnIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        android:layout_marginTop="16dp"
-=======
         android:layout_marginTop="4dp"
->>>>>>> Stashed changes
-=======
-        android:layout_marginTop="4dp"
->>>>>>> Stashed changes
         android:elevation="5dp"
         android:text="РЕД НА ЧЕРВЕНИТЕ!"
         android:textColor="#FF0000"
@@ -31,15 +23,7 @@
     <TextView
         android:id="@+id/duelQuestionText"
         android:layout_width="349dp"
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        android:layout_height="44dp"
-=======
         android:layout_height="54dp"
->>>>>>> Stashed changes
-=======
-        android:layout_height="54dp"
->>>>>>> Stashed changes
         android:layout_marginHorizontal="64dp"
         android:layout_marginTop="4dp"
         android:elevation="5dp"
@@ -106,11 +90,6 @@
         app:layout_constraintHorizontal_bias="0.711"
         app:layout_constraintStart_toStartOf="parent" />
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
     <TextView
         android:id="@+id/redTeamName"
         android:layout_width="wrap_content"
@@ -141,10 +120,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.732" />
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     <Button
         android:id="@+id/btnSubmitDuel"
         android:layout_width="152dp"
@@ -152,25 +127,12 @@
         android:layout_marginBottom="32dp"
         android:backgroundTint="@android:color/transparent"
         android:text=""
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
         app:backgroundTint="@null"
         android:stateListAnimator="@null"
->>>>>>> Stashed changes
-=======
-        app:backgroundTint="@null"
-        android:stateListAnimator="@null"
->>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent" />
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
     <ImageView
         android:id="@+id/redScoreBg"
         android:layout_width="160dp"
@@ -420,9 +382,5 @@
             app:layout_constraintTop_toTopOf="@+id/settingsBackground" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 </androidx.constraintlayout.widget.ConstraintLayout>
