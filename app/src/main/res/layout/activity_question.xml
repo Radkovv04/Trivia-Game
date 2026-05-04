@@ -249,11 +249,6 @@
         app:layout_constraintBottom_toTopOf="@+id/questionTextView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
     <ImageView
         android:id="@+id/redScoreBg"
         android:layout_width="160dp"
@@ -505,9 +500,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 </androidx.constraintlayout.widget.ConstraintLayout>
