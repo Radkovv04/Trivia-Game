@@ -16,9 +16,13 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     // We only need ONE variable to track who is currently answering the question
 
     private var isRedTurnToAnswer = true
+=======
+    var isRedTurnToAnswer = true
+>>>>>>> Stashed changes
 =======
     var isRedTurnToAnswer = true
 >>>>>>> Stashed changes
@@ -28,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+<<<<<<< Updated upstream
         //UI buttons
         val btnHelp = findViewById<ImageView>(R.id.btnHelp)
         val helpOverlay = findViewById<View>(R.id.helpOverlay)
@@ -65,6 +70,62 @@ class MainActivity : AppCompatActivity() {
         val switchAudio = findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.switchAudio)
         val switchGraphics = findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.switchGraphics)
 
+=======
+        // 1. Списък с ID-тата на всички прозрачни "бутони" върху имената
+        val labelButtons = listOf(
+            R.id.clickVidin, R.id.clickPleven, R.id.clickRuse, R.id.clickVarna,
+            R.id.clickSofia, R.id.clickLovech, R.id.clickStaraZagora, R.id.clickBurgas,
+            R.id.clickBlagoevgrad, R.id.clickPlovdiv, R.id.clickHaskovo, R.id.clickSmolyan
+        )
+
+// 2. Слагаме им един и същ слушател
+        labelButtons.forEach { id ->
+            findViewById<View>(id)?.setOnClickListener { view ->
+                // Взимаме името на региона от android:tag в XML
+                val regionName = view.tag.toString()
+
+                // Викаме същата логика, която ползваме при цъкане по цветове
+                handleTerritoryClick(regionName)
+            }
+        }
+        //UI buttons
+        val btnHelp = findViewById<ImageView>(R.id.btnHelp)
+        val helpOverlay = findViewById<View>(R.id.helpOverlay)
+        val btnCloseHelp = findViewById<View>(R.id.btnCloseHelp)
+        btnHelp.setOnClickListener {
+            helpOverlay.visibility = View.VISIBLE
+        }
+        btnCloseHelp.setOnClickListener {
+            helpOverlay.visibility = View.GONE
+        }
+        helpOverlay.setOnClickListener {
+            helpOverlay.visibility = View.GONE
+        }
+        val quitDialogLayout = findViewById<View>(R.id.quitDialogLayout)
+        val btnSurrender = findViewById<ImageView>(R.id.btnSurrender)
+        val btnConfirmQuit = findViewById<Button>(R.id.btnCancelQuit)
+        val btnCancelQuit = findViewById<Button>(R.id.btnConfirmQuit)
+        btnSurrender.setOnClickListener {
+            quitDialogLayout.visibility = View.VISIBLE
+        }
+        btnCancelQuit.setOnClickListener {
+            quitDialogLayout.visibility = View.GONE
+        }
+        btnConfirmQuit.setOnClickListener {
+            quitDialogLayout.visibility = View.GONE
+            if (isRedTurnToAnswer) {
+                showWinnerScreen(forcedWinner = "BLUE")
+            } else {
+                showWinnerScreen(forcedWinner = "RED")
+            }
+        }
+        val btnSettings = findViewById<ImageView>(R.id.btnSettings)
+        val settingsOverlay = findViewById<View>(R.id.settingsOverlay)
+        val btnCloseSettings = findViewById<View>(R.id.btnCloseSettings)
+        val switchAudio = findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.switchAudio)
+        val switchGraphics = findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.switchGraphics)
+
+>>>>>>> Stashed changes
         btnSettings.setOnClickListener { settingsOverlay.visibility = View.VISIBLE }
         btnCloseSettings.setOnClickListener { settingsOverlay.visibility = View.GONE }
         settingsOverlay.setOnClickListener { settingsOverlay.visibility = View.GONE }
@@ -120,9 +181,13 @@ class MainActivity : AppCompatActivity() {
     }
     private fun handleEndOfAttackTurn() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         GameManager.attackTurnsCompleted++ // A team just finished their attack
 
         // If it divides evenly by 2, it means BOTH teams have played!
+=======
+        GameManager.attackTurnsCompleted++
+>>>>>>> Stashed changes
 =======
         GameManager.attackTurnsCompleted++
 >>>>>>> Stashed changes
@@ -132,7 +197,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     private fun getFlagId(regionName: String): Int? {
@@ -203,8 +271,11 @@ class MainActivity : AppCompatActivity() {
         val castleSofia = findViewById<ImageView>(R.id.castleSofia)
         val castleBurgas = findViewById<ImageView>(R.id.castleBurgas)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         // Red Kingdom (Sofia)
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         sofia?.let {
@@ -217,8 +288,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         // Blue Kingdom (Burgas)
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         burgas?.let {
@@ -231,8 +305,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         // Reset targets and update scores
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         GameManager.redTargetRegion = null
@@ -249,6 +326,7 @@ class MainActivity : AppCompatActivity() {
                 if (GameManager.currentPhase == GamePhase.CAPTURE) {
                     val neutralCount = GameManager.territories.values.count { it.owner == Team.NEUTRAL }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
                     // --- THE DEADLOCK FIX (Instantly force both to answer) ---
                     if (neutralCount == 1) {
@@ -263,6 +341,8 @@ class MainActivity : AppCompatActivity() {
 
                     // --- NORMAL CAPTURE PHASE ---
 =======
+=======
+>>>>>>> Stashed changes
                     if (neutralCount == 1) {
                         GameManager.redTargetRegion = regionName
                         GameManager.blueTargetRegion = regionName
@@ -272,6 +352,9 @@ class MainActivity : AppCompatActivity() {
                         startQuestionActivity()
                         return
                     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     if (currentPlayer == Team.RED) {
                         GameManager.redTargetRegion = regionName
@@ -284,7 +367,10 @@ class MainActivity : AppCompatActivity() {
                     }
                 } else {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     // --- ATTACK PHASE ---
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                     GameManager.redTargetRegion = regionName
@@ -298,9 +384,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     private fun showFlag(regionName: String, team: Team) {
@@ -321,6 +410,7 @@ class MainActivity : AppCompatActivity() {
 
         val currentlyAnsweringRed = if (GameManager.currentPhase == GamePhase.CAPTURE) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             isRedTurnToAnswer // Standard Red -> Blue
         } else {
             // In Attack Phase: first is Attacker, second is Defender
@@ -329,12 +419,17 @@ class MainActivity : AppCompatActivity() {
             } else {
                 GameManager.currentTurn == Team.BLUE // If Blue is attacking, Red is defending (and vice versa)
 =======
+=======
+>>>>>>> Stashed changes
             isRedTurnToAnswer
         } else {
             if (isFirstAnswerer) {
                 GameManager.currentTurn == Team.RED
             } else {
                 GameManager.currentTurn == Team.BLUE
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             }
         }
@@ -351,6 +446,7 @@ class MainActivity : AppCompatActivity() {
         val roundLayout = findViewById<View>(R.id.roundBannerLayout)
         val roundText = findViewById<TextView>(R.id.roundNumberText)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         // Update the text to match the current round
         roundText.text = GameManager.currentRound.toString()
@@ -361,15 +457,21 @@ class MainActivity : AppCompatActivity() {
 
         // Hide it automatically after 2 seconds
 =======
+=======
+>>>>>>> Stashed changes
         roundText.text = GameManager.currentRound.toString()
         roundLayout.bringToFront()
         roundLayout.z = 100f
         roundLayout.visibility = View.VISIBLE
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
             roundLayout.visibility = View.GONE
         }, 2000)
     }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -385,14 +487,25 @@ class MainActivity : AppCompatActivity() {
         // TIE-BREAKER DUEL RESULT (1002)
 
 >>>>>>> Stashed changes
+=======
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // TIE-BREAKER DUEL RESULT (1002)
+
+>>>>>>> Stashed changes
         if (requestCode == 1002 && resultCode == Activity.RESULT_OK) {
             val winnerString = data?.getStringExtra("WINNING_TEAM")
             val winningTeam = if (winnerString == "RED") Team.RED else Team.BLUE
 
             GameManager.resolveDuel(winningTeam, GameManager.redTargetRegion!!)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
             // Check if the map is now full (in case this duel was for the last neutral territory)
+=======
+            // For last neutral teritory
+>>>>>>> Stashed changes
 =======
             // For last neutral teritory
 >>>>>>> Stashed changes
@@ -404,7 +517,11 @@ class MainActivity : AppCompatActivity() {
                 showPhaseBanner(GamePhase.ATTACK) {
                     GameManager.currentPhase = GamePhase.ATTACK
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     GameManager.currentTurn = Team.BLUE // BLUE STARTS THE ATTACK PHASE
+=======
+                    GameManager.currentTurn = Team.BLUE
+>>>>>>> Stashed changes
 =======
                     GameManager.currentTurn = Team.BLUE
 >>>>>>> Stashed changes
@@ -418,6 +535,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         // ==========================================================
         // 🧠 STANDARD QUESTION RESULT (1001)
@@ -437,10 +555,19 @@ class MainActivity : AppCompatActivity() {
             if (GameManager.currentPhase == GamePhase.CAPTURE) {
                 if (isRedTurnToAnswer) {
 >>>>>>> Stashed changes
+=======
+        // STANDARD QUESTION RESULT (1001)
+
+        if (requestCode == 1001 && resultCode == Activity.RESULT_OK) {
+            val wasCorrect = data?.getBooleanExtra("WAS_CORRECT", false) ?: false
+            if (GameManager.currentPhase == GamePhase.CAPTURE) {
+                if (isRedTurnToAnswer) {
+>>>>>>> Stashed changes
                     GameManager.redLastResult = wasCorrect
                     isRedTurnToAnswer = false
                     startQuestionActivity()
                 } else {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                     // Blue finished
                     GameManager.blueLastResult = wasCorrect
@@ -453,16 +580,22 @@ class MainActivity : AppCompatActivity() {
                     if (foughtForSameTerritory && GameManager.redLastResult && GameManager.blueLastResult) {
                         // Wait 1.5 seconds so they can breathe, then show the banner
 =======
+=======
+>>>>>>> Stashed changes
                     GameManager.blueLastResult = wasCorrect
                     val phaseBeforeRound = GameManager.currentPhase
                     val foughtForSameTerritory = (GameManager.redTargetRegion == GameManager.blueTargetRegion && GameManager.redTargetRegion != null)
                     if (foughtForSameTerritory && GameManager.redLastResult && GameManager.blueLastResult) {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                             showPhaseBanner(R.drawable.decided_teritory) { launchDuelPhase() }
                         }, 1500)
                         return
                     }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
                     // NORMAL RESOLUTION (or someone was wrong in the Deadlock)
@@ -473,18 +606,26 @@ class MainActivity : AppCompatActivity() {
                     val blueOwnsAll = GameManager.territories.values.all { it.owner == Team.BLUE }
 
 =======
+=======
+>>>>>>> Stashed changes
                     GameManager.resolveRound(GameManager.redLastResult, GameManager.blueLastResult)
                     updateMapVisuals()
                     val redOwnsAll = GameManager.territories.values.all { it.owner == Team.RED }
                     val blueOwnsAll = GameManager.territories.values.all { it.owner == Team.BLUE }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     if (GameManager.instantWinner != null || redOwnsAll || blueOwnsAll) {
                         showWinnerScreen()
                         return
                     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
                     // Phase Transition Check
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                     if (phaseBeforeRound == GamePhase.CAPTURE && GameManager.currentPhase == GamePhase.ATTACK) {
@@ -492,6 +633,7 @@ class MainActivity : AppCompatActivity() {
                             GameManager.currentPhase = GamePhase.ATTACK
                             GameManager.currentTurn = Team.BLUE // BLUE STARTS ATTACK PHASE
                             isFirstAnswerer = true
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
                             // --- RESET TRACKERS AND SHOW ROUND 1 ---
@@ -504,11 +646,17 @@ class MainActivity : AppCompatActivity() {
                             GameManager.attackTurnsCompleted = 0
                             showRoundBanner()
 >>>>>>> Stashed changes
+=======
+                            GameManager.currentRound = 1
+                            GameManager.attackTurnsCompleted = 0
+                            showRoundBanner()
+>>>>>>> Stashed changes
                             updateMapVisuals()
                             Toast.makeText(this, "Фаза Атака: Ред на Сините!", Toast.LENGTH_SHORT).show()
                         }
                     }
                     else {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                         // --- THE AUTO-SELECT FIX ---
                         val neutrals = GameManager.territories.values.filter { it.owner == Team.NEUTRAL }
@@ -526,6 +674,8 @@ class MainActivity : AppCompatActivity() {
 
                             // Wait 2 seconds so they see the map update, then automatically launch!
 =======
+=======
+>>>>>>> Stashed changes
                         val neutrals = GameManager.territories.values.filter { it.owner == Team.NEUTRAL }
                         if (neutrals.size == 1) {
                             val lastRegion = neutrals.first().name
@@ -534,6 +684,9 @@ class MainActivity : AppCompatActivity() {
                             showFlag(lastRegion, Team.RED)
                             showFlag(lastRegion, Team.BLUE)
                             Toast.makeText(this, "Битка за последната територия!", Toast.LENGTH_LONG).show()
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                             android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                                 isRedTurnToAnswer = true
@@ -541,7 +694,10 @@ class MainActivity : AppCompatActivity() {
                             }, 2000)
                         } else {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                             // Normal turn continuation (2+ territories left)
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                             GameManager.currentTurn = Team.RED
@@ -549,8 +705,11 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
                     // Phase Transition Check
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                     if (phaseBeforeRound == GamePhase.CAPTURE && GameManager.currentPhase == GamePhase.ATTACK) {
@@ -570,7 +729,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             // --- CASE B: ATTACK PHASE (Attacker-First Logic) ---
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             else {
@@ -578,6 +740,7 @@ class MainActivity : AppCompatActivity() {
                 val defender = if (attacker == Team.RED) Team.BLUE else Team.RED
 
                 if (isFirstAnswerer) {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                     // First person answering is ALWAYS the attacker
                     if (attacker == Team.RED) GameManager.redLastResult = wasCorrect
@@ -593,6 +756,8 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         // Attacker was correct: Now defender must answer
 =======
+=======
+>>>>>>> Stashed changes
                     if (attacker == Team.RED) GameManager.redLastResult = wasCorrect
                     else GameManager.blueLastResult = wasCorrect
                     if (!wasCorrect) {
@@ -602,11 +767,15 @@ class MainActivity : AppCompatActivity() {
                         isFirstAnswerer = true
                         finishAttackRound()
                     } else {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         isFirstAnswerer = false
                         startQuestionActivity()
                     }
                 } else {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                     // Second person answering is ALWAYS the defender
                     if (defender == Team.RED) GameManager.redLastResult = wasCorrect
@@ -620,16 +789,27 @@ class MainActivity : AppCompatActivity() {
                     else GameManager.blueLastResult = wasCorrect
                     if (GameManager.redLastResult && GameManager.blueLastResult) {
 >>>>>>> Stashed changes
+=======
+                    if (defender == Team.RED) GameManager.redLastResult = wasCorrect
+                    else GameManager.blueLastResult = wasCorrect
+                    if (GameManager.redLastResult && GameManager.blueLastResult) {
+>>>>>>> Stashed changes
                         android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                             showPhaseBanner(R.drawable.decided_teritory) { launchDuelPhase() }
                         }, 1500)
                     } else {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                         // Attacker was correct (checked above), Defender was wrong -> Attacker wins
                         GameManager.resolveDuel(attacker, GameManager.redTargetRegion!!)
 
                         handleEndOfAttackTurn()
                         isFirstAnswerer = true // Reset
+=======
+                        GameManager.resolveDuel(attacker, GameManager.redTargetRegion!!)
+                        handleEndOfAttackTurn()
+                        isFirstAnswerer = true
+>>>>>>> Stashed changes
 =======
                         GameManager.resolveDuel(attacker, GameManager.redTargetRegion!!)
                         handleEndOfAttackTurn()
@@ -642,6 +822,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
     private fun finishAttackRound() {
         // Force the map to look at the new owners in GameManager
@@ -653,11 +834,16 @@ class MainActivity : AppCompatActivity() {
         val blueOwnsAll = GameManager.territories.values.all { it.owner == Team.BLUE }
 
 =======
+=======
+>>>>>>> Stashed changes
     private fun finishAttackRound() {
         updateMapVisuals()
         hideAllFlags()
         val redOwnsAll = GameManager.territories.values.all { it.owner == Team.RED }
         val blueOwnsAll = GameManager.territories.values.all { it.owner == Team.BLUE }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         if (GameManager.instantWinner != null || redOwnsAll || blueOwnsAll) {
             val finalWinner = GameManager.instantWinner ?: if (redOwnsAll) Team.RED else Team.BLUE
@@ -667,8 +853,11 @@ class MainActivity : AppCompatActivity() {
             return
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         // Switch Attacker Turn!
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         GameManager.currentTurn = if (GameManager.currentTurn == Team.RED) Team.BLUE else Team.RED
@@ -676,12 +865,18 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Атакуват ${if(GameManager.currentTurn == Team.RED) "Червените" else "Сините"}!", Toast.LENGTH_LONG).show()
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
     private fun showPhaseBanner(data: Any?, onComplete: (() -> Unit)? = null) {
         val phaseOverlay = findViewById<View>(R.id.phaseOverlayLayout)
         val phaseImage = findViewById<ImageView>(R.id.phaseImage)
 
         // This handles both GamePhase and R.drawable IDs correctly
+=======
+    private fun showPhaseBanner(data: Any?, onComplete: (() -> Unit)? = null) {
+        val phaseOverlay = findViewById<View>(R.id.phaseOverlayLayout)
+        val phaseImage = findViewById<ImageView>(R.id.phaseImage)
+>>>>>>> Stashed changes
 =======
     private fun showPhaseBanner(data: Any?, onComplete: (() -> Unit)? = null) {
         val phaseOverlay = findViewById<View>(R.id.phaseOverlayLayout)
@@ -695,6 +890,7 @@ class MainActivity : AppCompatActivity() {
             is Int -> phaseImage.setImageResource(data)
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         phaseOverlay.visibility = View.VISIBLE
 
@@ -706,6 +902,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showWinnerScreen() {
+=======
+        phaseOverlay.visibility = View.VISIBLE
+        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+            phaseOverlay.visibility = View.GONE
+            onComplete?.invoke()
+        }, 3000)
+    }private fun showWinnerScreen(forcedWinner: String? = null) {
+>>>>>>> Stashed changes
 =======
         phaseOverlay.visibility = View.VISIBLE
         android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({

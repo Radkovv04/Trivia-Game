@@ -8,15 +8,21 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.MotionEvent
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 =======
+=======
+>>>>>>> Stashed changes
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import android.widget.TextView
 import android.widget.Toast
@@ -25,7 +31,10 @@ import kotlin.math.abs
 
 class TieBreakerActivity : AppCompatActivity() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     private var countDownTimer: CountDownTimer? = null
@@ -33,7 +42,10 @@ class TieBreakerActivity : AppCompatActivity() {
     private var correctAnswer = 0
     private var isRedTurn = true
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     private var redFinalAnswer = 0
@@ -51,6 +63,7 @@ class TieBreakerActivity : AppCompatActivity() {
         val redInput = findViewById<EditText>(R.id.redInput)
         val blueInput = findViewById<EditText>(R.id.blueInput)
         val submitBtn = findViewById<Button>(R.id.btnSubmitDuel)
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
         // Load Question
@@ -77,6 +90,8 @@ class TieBreakerActivity : AppCompatActivity() {
         }
 
 =======
+=======
+>>>>>>> Stashed changes
         val currentQuestion = QuestionBank.getNextNumericQuestion()
         val btnHelp = findViewById<ImageView>(R.id.btnHelp)
         val helpOverlay = findViewById<View>(R.id.helpOverlay)
@@ -133,6 +148,9 @@ class TieBreakerActivity : AppCompatActivity() {
             }
             false
         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         submitBtn.setOnClickListener {
             if (isRedTurn) {
@@ -141,6 +159,7 @@ class TieBreakerActivity : AppCompatActivity() {
                     Toast.makeText(this, "Въведете число!", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
                 redFinalAnswer = inputStr.toInt()
@@ -162,6 +181,8 @@ class TieBreakerActivity : AppCompatActivity() {
                 startTurn(blueInput)
 
 =======
+=======
+>>>>>>> Stashed changes
                 redFinalAnswer = inputStr.toInt()
                 redTimeTaken = System.currentTimeMillis() - turnStartTime
                 countDownTimer?.cancel()
@@ -172,6 +193,9 @@ class TieBreakerActivity : AppCompatActivity() {
                 turnIndicator.setTextColor(Color.parseColor("#4169E1"))
                 blueInput.isEnabled = true
                 startTurn(blueInput)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             } else {
                 val inputStr = blueInput.text.toString()
@@ -180,13 +204,17 @@ class TieBreakerActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 blueFinalAnswer = inputStr.toInt()
                 blueTimeTaken = System.currentTimeMillis() - turnStartTime
                 blueInput.isEnabled = false
                 submitBtn.isEnabled = false
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
                 // Stop the timer completely
@@ -203,17 +231,23 @@ class TieBreakerActivity : AppCompatActivity() {
 
                 // Wait 2.5 seconds to build tension, then show the winner!
 =======
+=======
+>>>>>>> Stashed changes
                 countDownTimer?.cancel()
                 hideKeyboard()
                 turnIndicator.text = "СРАВНЯВАНЕ..."
                 turnIndicator.setTextColor(Color.BLACK)
                 redInput.setText(redFinalAnswer.toString())
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                     resolveDuel(questionText, redInput, blueInput)
                 }, 2500)
             }
         }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     }
 
@@ -224,6 +258,8 @@ class TieBreakerActivity : AppCompatActivity() {
         val timerText = findViewById<TextView>(R.id.timerText)
 
 =======
+=======
+>>>>>>> Stashed changes
         fun updatePointsDisplay() {
             val tvRedPoints = findViewById<TextView>(R.id.redScoreText)
             val tvBluePoints = findViewById<TextView>(R.id.blueScoreText)
@@ -239,11 +275,15 @@ class TieBreakerActivity : AppCompatActivity() {
         countDownTimer = null
 
         val timerText = findViewById<TextView>(R.id.timerText)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         countDownTimer = object : CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timerText.text = (millisUntilFinished / 1000).toString()
             }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
             override fun onFinish() {
@@ -254,10 +294,16 @@ class TieBreakerActivity : AppCompatActivity() {
                 timerText.text = "0"
                 handleTimeout()
 >>>>>>> Stashed changes
+=======
+            override fun onFinish() {
+                timerText.text = "0"
+                handleTimeout()
+>>>>>>> Stashed changes
             }
         }
         countDownTimer?.start()
     }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
     private fun handleTimeout() {
@@ -282,6 +328,8 @@ class TieBreakerActivity : AppCompatActivity() {
     }
 
 =======
+=======
+>>>>>>> Stashed changes
     private fun handleTimeout() {
         val submitBtn = findViewById<Button>(R.id.btnSubmitDuel)
         if (isRedTurn) {
@@ -298,6 +346,9 @@ class TieBreakerActivity : AppCompatActivity() {
         super.onDestroy()
         countDownTimer?.cancel()
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     private fun startTurn(inputBox: EditText) {
         inputBox.requestFocus()
@@ -306,7 +357,10 @@ class TieBreakerActivity : AppCompatActivity() {
         turnStartTime = System.currentTimeMillis()
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     private fun hideKeyboard() {
@@ -317,7 +371,10 @@ class TieBreakerActivity : AppCompatActivity() {
         }
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     private fun resolveDuel(questionText: TextView, redInput: EditText, blueInput: EditText) {
@@ -327,7 +384,10 @@ class TieBreakerActivity : AppCompatActivity() {
         val blueDiff = abs(correctAnswer - blueFinalAnswer)
         val winner: Team
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         if (redDiff < blueDiff) {
@@ -336,11 +396,17 @@ class TieBreakerActivity : AppCompatActivity() {
             winner = Team.BLUE
         } else {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             // TIE BREAKER BY SPEED
             winner = if (redTimeTaken <= blueTimeTaken) Team.RED else Team.BLUE
             Toast.makeText(this, "РАВЕНСТВО! Бързината решава!", Toast.LENGTH_LONG).show()
         }
 
+=======
+            winner = if (redTimeTaken <= blueTimeTaken) Team.RED else Team.BLUE
+            Toast.makeText(this, "РАВЕНСТВО! Бързината решава!", Toast.LENGTH_LONG).show()
+        }
+>>>>>>> Stashed changes
 =======
             winner = if (redTimeTaken <= blueTimeTaken) Team.RED else Team.BLUE
             Toast.makeText(this, "РАВЕНСТВО! Бързината решава!", Toast.LENGTH_LONG).show()
@@ -354,8 +420,11 @@ class TieBreakerActivity : AppCompatActivity() {
             redInput.setTextColor(android.graphics.Color.RED)
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         // Wait 3 seconds, then return to map
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
